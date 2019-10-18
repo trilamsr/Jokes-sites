@@ -1,0 +1,77 @@
+﻿@model Belt_Exam.ViewModels.LogAndReg;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+
+
+<div class="d-flex justify-content-center">
+    <h3> @TempData["Success"] </h3>
+</div>
+    <div class="row">
+        <div class="col-6">
+            <div class="d-flex justify-content-center">
+                <h3>Register</h3>
+            </div>
+            <div class="border border-primary rounded">
+                <form asp-action="register" asp-controller="home" method="post">
+                    <div class="form-row">
+                        <div class="col">
+                            <label asp-for="Register.Name"></label>
+                            <input class="form-control" asp-for="Register.Name">
+                            <span asp-validation-for="Register.Name"></span>
+                        </div>
+                        <div class="col">
+                            <label asp-for="Register.Alias"></label>
+                            <input class="form-control" asp-for="Register.Alias">
+                            <span asp-validation-for="Register.Alias"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Register.Email"></label>
+                        <input class="form-control" asp-for="Register.Email">
+                        <span asp-validation-for="Register.Email"></span>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label asp-for="Register.Password"></label>
+                            <input class="form-control" asp-for="Register.Password">
+                            <span asp-validation-for="Register.Password"></span>
+                        </div>
+                        <div class="col">
+                            <label asp-for="Register.ConfirmPassword"></label>
+                            <input class="form-control" asp-for="Register.ConfirmPassword">
+                            <span asp-validation-for="Register.ConfirmPassword"></span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="d-flex justify-content-center">
+                <h3>Login</h3>
+            </div>
+            <div class="border border-primary rounded">
+                <form asp-action="login" asp-controller="home" method="post">
+                    <div class="form-group">
+                        <label asp-for="Login.Email"></label>
+                        <input class="form-control" asp-for="Login.Email">
+                        <span asp-validation-for="Login.Email"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Login.Password"></label>
+                        <input class="form-control" asp-for="Login.Password">
+                        <span asp-validation-for="Login.Password"></span>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

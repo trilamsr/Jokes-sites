@@ -1,0 +1,60 @@
+@model Belt_Exam.ViewModels.PostViewModel;
+<div class="container">
+    <header>
+        <div class="d-flex justify-content-end">
+            <div class="col-auto">
+                <h4>
+                    <a asp-action="Dashboard" asp-controller="home">Dashboard</a>
+                </h4>
+            </div>
+            <div class="col-auto">
+                <h4>
+                    <a asp-action="logout" asp-controller="home">Logout</a>
+                </h4>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div>
+            Creator:
+            <a asp-action="Account" asp-controller="Home" asp-route-id="@Model.SaidPost.Creator.AccountId">
+                @Model.SaidPost.Creator.Alias
+            </a>
+        </div>
+        <div>
+            Content: @Model.SaidPost.Content
+        </div>
+        <div>
+            <div>People who liked this post</div>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                Alias
+                            </th>
+                            <th scope="col">
+                                Name
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Like x in Model.SaidPost.LikesFroms)
+                        {
+                            <tr>
+                                <td>
+                                    <a asp-action="account" asp-controller="home" asp-route-id="@x.AccountId"></a>
+                                    @x.Account.Alias
+                                </td>
+                                <td>
+                                    @x.Account.Name
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>

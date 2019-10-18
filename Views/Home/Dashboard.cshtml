@@ -1,0 +1,62 @@
+@model Belt_Exam.ViewModels.DashboardViewModel;
+
+<div class="container">
+    <header>
+        <div>
+            <h3>
+                @Model.Greeting, @Model.LoggedAccount.Name
+            </h3>
+        </div>
+        <div>
+            <a asp-action="logout" asp-controller="home">Logout</a>
+        </div>
+    </header>
+    <hr>
+
+
+    <main>
+        <section>
+            <form asp-action="NewPost" asp-controller="home" method="post">
+                <div class="form-group">
+                    <div class="">
+                        <label asp-for="NewPost.Content" class="font-weight-bolder lead"></label>
+                        <textarea asp-for="NewPost.Content" class="form-control"></textarea>
+                        <span asp-validation-for="NewPost.Content"></span>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Make jokes</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <section>
+            @foreach (Post post in Model.AllPost) {
+                <div class="row">
+                    <div class="col-2">
+                        <a asp-action="Account" asp-controller="home" asp-route-id="@post.Creator.AccountId">@post.Creator.Alias</a> said
+                    </div>
+                    <div class="col-7">
+                        <div class="form-control">@post.Content</div>
+                    </div>
+                    <div class="col-3 row">
+                        <div class="col">
+                            @if (post.Creator == Model.LoggedAccount) {
+                                <a asp-action="DeletePost" asp-controller="home" asp-route-id="@post.PostId">Delete Post</a>
+                            } else if(post.LikesFroms.Any(x=> x.AccountId == Model.LoggedAccount.AccountId)) {
+                                <a asp-action="removeLike" asp-controller="home" asp-route-id="@post.PostId">Unlike</a>
+                            } else {
+                                <a asp-action="AddLike" asp-controller="home" asp-route-id="@post.PostId">Like</a>
+                            }
+                        </div>
+                        <div class="col">
+                            <a asp-action="Post" asp-controller="home" asp-route-id="@post.PostId">
+                                @post.LikesFroms.Count Likes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            }
+        </section>
+    </main>
+</div>

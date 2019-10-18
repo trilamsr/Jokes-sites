@@ -1,0 +1,41 @@
+@model Belt_Exam.ViewModels.AccountViewModel;
+<div class="container">
+    <header>
+        <div class="d-flex justify-content-end">
+            <div class="col-auto">
+                <h4>
+                    <a asp-action="Dashboard" asp-controller="home">Dashboard</a>
+                </h4>
+            </div>
+            <div class="col-auto">
+                <h4>
+                    <a asp-action="logout" asp-controller="home">Logout</a>
+                </h4>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div>
+            <div>
+                Name: @Model.SaidAccount.Name
+            </div>
+            <div>
+                Alias: @Model.SaidAccount.Name
+            </div>
+            <div>
+                Email: @Model.SaidAccount.Email
+            </div>
+        </div>
+        <hr>
+        <div>
+            <div>
+                Total Number of Posts: @Model.SaidAccount.Posts.Count
+            </div>
+            <div>
+                Total Numbers of Likes: @Model.AllLikes
+            </div>
+
+        </div>
+    </main>
+</div>
